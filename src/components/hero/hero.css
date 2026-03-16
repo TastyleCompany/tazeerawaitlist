@@ -1,0 +1,139 @@
+
+.hero {
+    padding: 50px 0 50px;
+}
+
+/* 1. Pendekatan Mobile-First (Default untuk HP) */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Satu kolom penuh */
+    gap: 20px;
+    align-items: center;
+    /* Tentukan urutan area untuk mobile di sini */
+    grid-template-areas: 
+        "hero"
+        "phone";
+}
+
+/* Hubungkan elemen anak ke area yang ditentukan */
+.hero { grid-area: hero; }
+.phone { grid-area: phone; }
+
+/* 2. Pengaturan untuk Desktop (Layar Lebar) */
+@media (min-width: 1024px) {
+    .hero-grid {
+        grid-template-columns: 1.1fr 0.9fr;
+        grid-template-areas: "teks gambar"; /* Teks di kiri, gambar di kanan */
+        gap: 30px;
+    }
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+h1 {
+    margin: 0 0 16px;
+    font-size: clamp(3rem, 7vw, 5.8rem);
+    line-height: .95;
+    letter-spacing: -.05em;
+}
+
+.subheadline {
+    color: #ddd5c8;
+    font-size: 1.08rem;
+    max-width: 720px;
+    margin-bottom: 26px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.gold-text {
+    background: linear-gradient(135deg, var(--gold-2), var(--gold), #f6dfbf);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid rgba(241,196,135,.28);
+    border-radius: 999px;
+    color: #130f0a;
+    background: linear-gradient(135deg, var(--gold-2), var(--gold));
+    padding: 14px 24px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 12px 32px rgba(216,163,95,.22);
+    transition: transform .2s ease, box-shadow .2s ease;
+    cursor: pointer;
+}
+
+.btn:hover { transform: translateY(-1px); box-shadow: 0 16px 36px rgba(216,163,95,.28); }
+
+.btn-secondary {
+    background: rgba(255,255,255,.02);
+    color: var(--text);
+    border: 1px solid var(--line);
+    box-shadow: none;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding:10px 16px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(241,196,135,.16);
+    color: var(--muted);
+    margin-bottom: 15px;
+    font-size: 14px;
+    letter-spacing: .02em;
+}
+
+.video-background {
+position: fixed;
+inset: 0;
+z-index: -1; /* Pastikan video berada di belakang konten */
+overflow: hidden;
+pointer-events: none;
+}
+
+.video-background video {
+width: 100%;
+height: 100%;
+object-fit: cover;
+opacity: 0.4; /* Sesuaikan opacity video agar tidak terlalu gelap */
+filter: saturate(1.2) brightness(1.1) contrast(1.05); /* Menambah kecerahan dan saturasi */
+}
+
+.video-overlay {
+position: absolute;
+inset: 0;
+background: rgba(0, 0, 0, 0.4); /* Mengurangi efek gelap agar lebih ringan */
+}
+
+.video-glow {
+position: absolute;
+inset: 0;
+background: radial-gradient(circle at 78% 22%, rgba(241,196,135,0.15), transparent 16%),
+            radial-gradient(circle at 18% 78%, rgba(216,163,95,0.1), transparent 18%);
+filter: blur(8px);
+}
+.container {
+    width: min(var(--max), calc(100% - 32px));
+    margin: 0 auto;
+}
