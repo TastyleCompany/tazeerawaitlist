@@ -1,0 +1,94 @@
+/* Container Utama Vision */
+.vision {
+    padding: 80px 0;
+}
+
+.vision-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 500px;
+    /* Membalik urutan: konten teks jadi di kanan, media jadi di kiri */
+    flex-direction: row-reverse; 
+}
+
+/* Bagian Teks Vision */
+.vision-content {
+    flex: 1;
+    min-width: 300px;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    /* Membuat teks rata kanan */
+    text-align: right; 
+}
+
+.vision-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+.vision-description {
+    color: #a1a1aa;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-left: auto; /* Memastikan p tetap di kanan jika ada max-width */
+    max-width: 450px;
+}
+
+/* Wrapper Tombol agar berada di kanan */
+.vision-btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.vision-btn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 10px 32px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.vision-btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Bagian Gambar Vision */
+.vision-media {
+    flex: 1;
+    min-width: 300px;
+    height: 500px;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 768px) {
+    .vision-container {
+        /* Balikkan kembali ke urutan normal (teks di atas, gambar di bawah) */
+        flex-direction: column; 
+    }
+    
+    .vision-content {
+        padding: 40px 20px;
+        text-align: center; /* Rata tengah di HP agar lebih rapi */
+        align-items: center;
+    }
+
+    .vision-btn-wrapper {
+        justify-content: center;
+    }
+
+    .vision-media {
+        height: 300px;
+        width: 100%;
+    }
+}

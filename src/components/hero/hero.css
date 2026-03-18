@@ -9,23 +9,6 @@
     grid-template-columns: 1fr; /* Satu kolom penuh */
     gap: 20px;
     align-items: center;
-    /* Tentukan urutan area untuk mobile di sini */
-    grid-template-areas: 
-        "hero"
-        "phone";
-}
-
-/* Hubungkan elemen anak ke area yang ditentukan */
-.hero { grid-area: hero; }
-.phone { grid-area: phone; }
-
-/* 2. Pengaturan untuk Desktop (Layar Lebar) */
-@media (min-width: 1024px) {
-    .hero-grid {
-        grid-template-columns: 1.1fr 0.9fr;
-        grid-template-areas: "teks gambar"; /* Teks di kiri, gambar di kanan */
-        gap: 30px;
-    }
 }
 
 .eyebrow {
@@ -105,7 +88,7 @@ h1 {
 }
 
 .video-background {
-position: fixed;
+position: absolute;
 inset: 0;
 z-index: -1; /* Pastikan video berada di belakang konten */
 overflow: hidden;

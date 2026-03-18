@@ -13,7 +13,7 @@ function Hero() {
       
       <section className="hero">
         <div className="container hero-grid">
-          <div>
+          <div className='hero-contain'>
             <div className="pill">Premium startup marketplace • Waitlist now open</div>
             <div className="eyebrow">The Marketplace for Everything Style</div>
             <h1>Everything Has <span className="gold-text">Style</span></h1>
