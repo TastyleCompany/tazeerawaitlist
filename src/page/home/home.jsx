@@ -1,7 +1,127 @@
 import "./home.css"
 import { motion } from "framer-motion"
 
+const BenefitSection = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { 
+        duration: 0.6, 
+        ease: [0.4, 0, 0.2, 1] // Ini menyamakan feel Framer Motion dengan CSS cubic-bezier kamu
+      },
+    },
+  };
+
+  const benefits = [
+    { icon: "📚", 
+      title: "Exclusive Content for Waitlist Members", 
+      desc: "As a waitlist member, you'll have access to exclusive content such as styling tips, behind-the-scenes insights, and more!", 
+      button: "Access Now" },
+    { icon: "🎉", title: "Bonus Points for Early Referrals", 
+      desc: "Invite friends early and earn bonus points!", 
+      button: "Invite Now" },
+    { icon: "👗", title: "Personalized Style Recommendations", 
+      desc: "Get early access to personalized style recommendations...", 
+      button: "Learn More" },
+    { icon: "🛡️", title: "VIP Customer Support", 
+      desc: "Founding members get priority access to our dedicated customer support team.", 
+      button: "Contact Support" },
+    { icon: "⚡", title: "Early platform access", 
+      desc: "Be among the first to experience our platform when it launches.", 
+      button: "Get Early Access" },
+    { icon: "✦", title: "Exclusive perks", 
+      desc: "Receive private launch discounts and special merchandise...", 
+      button: "View Perks" },
+    { icon: "◎", title: "Community membership", 
+      desc: "Join a network of like-minded individuals...", 
+      button: "Join Community" },
+    { icon: " % ", title: "Early discounts", 
+      desc: "Unlock launch pricing..." },
+  ];
+
+  return (
+    <motion.div
+      className="benefits-grid"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      {benefits.map((benefit, index) => (
+        <motion.div 
+          key={index} 
+          className="benefit" 
+          variants={itemVariants}
+        >
+          <div className="icon">{benefit.icon}</div>
+          <h3>{benefit.title}</h3>
+          <p className="benefit-description">{benefit.desc}</p>
+          {benefit.button && (
+            <a href="#" className="btn btn-secondary">{benefit.button}</a>
+          )}
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+};
+
+const FoundingBenefits = () => {
+  // Variabel animasi untuk kemunculan perlahan (fade up)
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
+  };
+  return (
+    <motion.div 
+      className="founding-benefits"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <motion.div className="founding1" variants={fadeInUp}>
+        <div className="benefit">
+          <div className="icon">👑</div>
+          <h3>Exclusive Content and Early Access</h3>
+          <p>As a waitlist member, you'll get exclusive access to behind-the-scenes content, early product previews, and the opportunity to shape the future of TAZEERA with your feedback.</p>
+          <a href="#" className="btn btn-secondary">Access Exclusive Content</a>
+        </div>
+      </motion.div>
+      <motion.div className="founding2" variants={fadeInUp}>
+        <div className="benefit">
+          <div className="icon">🎁</div>
+          <h3>Bonus Points and Referral Rewards</h3>
+          <p>Invite friends to join the waitlist and earn bonus points that can be redeemed for early access, exclusive merchandise, and special experiences.</p>
+          <a href="#" className="btn btn-secondary">Invite Friends</a>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+
 function Home() {
+  
   return (
     <>
       {/* HERO SECTION */}
@@ -19,6 +139,29 @@ function Home() {
             </div>
           </div>
         </div>
+  {/* Gunakan className, bukan class */}
+  <div className="phone">
+    <div className="screen">
+      <div className="topline">
+        <span>TAZEERA</span>
+        <span>Style Feed</span>
+      </div>
+      <div className="searchbar">Search style, categories, creators...</div>
+      <div className="mini-grid">
+        <div className="mini-card"><strong>Fashion</strong></div>
+        <div className="mini-card"><strong>Gadgets</strong></div>
+        <div className="mini-card"><strong>Home</strong></div>
+        <div className="mini-card"><strong>Automotive</strong></div>
+      </div>
+      <div className="chart-card">
+        <strong>The Future of Marketplace</strong>
+        <div className="bars">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
       </section>
 
       {/* MISSION STORYTELLING */}
@@ -51,7 +194,19 @@ function Home() {
         </div>
       </section>
 
-      {/* WAIT LIST LEADERBOARD & SOCIAL PROOF */}
+<section>
+  <div className="container">
+    <div class="section-head">
+          <div class="eyebrow">Founding Member Benefits</div>
+          <h2>Join early. Get more than access.</h2>
+          <p>The first wave of users shapes community quality, product direction, and the culture of the marketplace.</p>
+        </div>
+    <FoundingBenefits />
+    <BenefitSection />
+  </div>
+</section>
+
+          {/* WAIT LIST LEADERBOARD & SOCIAL PROOF */}
     <motion.div
       initial={{ opacity: 0, y: 50 }} // Keadaan awal (tersembunyi)
       whileInView={{ opacity: 1, y: 0 }} // Animasi saat di-scroll/masuk layar

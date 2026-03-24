@@ -3,8 +3,10 @@ nav, .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
-    background: var(--nav-bg);
+    padding: 20px 15px;
+    background: var(--panel);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     color: var(--text);
     position: sticky;
     top: 0;
@@ -84,6 +86,7 @@ nav, .navbar {
     display: none;
     flex-direction: column;
     gap: 6px;
+    padding-right: 20px;
     cursor: pointer;
     z-index: 1200;
 }
@@ -111,6 +114,7 @@ nav, .navbar {
     .nav-links {
         position: fixed;
         top: 0;
+        z-index: 1200;
         right: -100%;
         width: 33.33vw; 
         min-width: 220px; /* Sedikit lebih lebar agar teks aman */
@@ -134,7 +138,9 @@ nav, .navbar {
     }
 
 
-    .nav-links.open { right: 0; }
+    .nav-links.open { 
+        right: 0;
+    }
 
     .nav-links li {
         font-size: 1rem;
@@ -148,7 +154,19 @@ nav, .navbar {
 /* Overlay */
 .menu-overlay {
     position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 900;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    
+    /* Z-index harus di bawah .nav-links (1200) tapi di atas konten web lainnya */
+    z-index: 1100; 
+    
+    /* Pastikan menutupi seluruh klik */
+    pointer-events: all; 
+    cursor: pointer;
 }
+
