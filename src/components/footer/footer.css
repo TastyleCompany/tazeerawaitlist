@@ -1,0 +1,59 @@
+footer {
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 80px 0 40px;
+  border-top: 1px solid var(--line);
+  font-family: inherit; /* Mengikuti font utama project */
+}
+
+.footer-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Brand Section */
+.footer-brand {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  /* Menggunakan kombinasi variabel Gold kamu */
+  background: linear-gradient(135deg, var(--text) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-brand + div {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+/* Right Section Metadata */
+.footer-wrap > div:last-child {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  opacity: 0.6;
+  text-align: right;
+  max-width: 320px;
+  line-height: 1.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  
+  .footer-wrap > div:last-child {
+    text-align: left;
+  }
+}

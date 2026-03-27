@@ -48,7 +48,8 @@ const BenefitSection = () => {
       desc: "Join a network of like-minded individuals...", 
       button: "Join Community" },
     { icon: " % ", title: "Early discounts", 
-      desc: "Unlock launch pricing..." },
+      desc: "Unlock launch pricing...",
+      button: "Unlock Discounts" },
   ];
 
   return (
@@ -119,6 +120,236 @@ const FoundingBenefits = () => {
   );
 };
 
+const FeaturesSection = () => {
+  const perks = [
+    {
+      title: "Founding Badge",
+      description: "Tampilkan status eksklusif Anda di profil permanen sebagai pionir komunitas.",
+      icon: "💎"
+    },
+    {
+      title: "Direct Influence",
+      description: "Akses ke channel voting eksklusif untuk menentukan fitur produk selanjutnya.",
+      icon: "🗳️"
+    },
+    {
+      title: "Zero Fees",
+      description: "Nikmati potongan biaya transaksi selama 6 bulan pertama setelah rilis publik.",
+      icon: "✨"
+    }
+  ];
+
+  return (
+    <section className="features-container">
+      <div className="features-grid">
+        {perks.map((perk, index) => (
+          <div key={index} className="feature-card">
+            <div className="icon-wrapper">{perk.icon}</div>
+            <h3 className="feature-title">{perk.title}</h3>
+            <p className="feature-description">{perk.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+// PRODUCT CARD
+const products = [
+  {
+    id: 1,
+    tag: 'New Arrival',
+    title: 'Architectural Tech Kit',
+    desc: 'Functional aesthetic for modern creators.',
+    price: 'Rp 1.250.000',
+    img: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=1000'
+  },
+  {
+    id: 2,
+    tag: 'Signature',
+    title: 'Ethereal Glass Vase',
+    desc: 'Hand-blown clarity for your space.',
+    price: 'Rp 890.000',
+    img: 'https://images.unsplash.com/photo-1581783898377-1c85bf937427?q=80&w=1000'
+  }
+];
+
+// Varian untuk animasi container (parent)
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, // Jeda antar kartu saat muncul
+    },
+  },
+};
+
+// Varian untuk item individual (child)
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] } 
+  },
+};
+
+const ProductSection = () => {
+  return (
+    <section className="product-section">
+      <motion.div 
+        className="product-grid"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        {products.map((item) => (
+          <motion.div 
+            key={item.id} 
+            className="tazeera-card"
+            variants={itemVariants}
+            whileHover={{ y: -10 }} // Menggantikan hover CSS manual agar lebih sinkron
+          >
+            <div className="card-media">
+              <motion.img 
+                src={item.img} 
+                alt={item.title} 
+                loading="lazy"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+              />
+              <div className="card-badge">{item.tag}</div>
+              
+              <motion.div 
+                className="card-overlay"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+              >
+                <motion.button 
+                  className="cta-button"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View Details
+                </motion.button>
+              </motion.div>
+            </div>
+            
+            <div className="card-body">
+              <div className="card-header">
+                <h3 className="card-title">{item.title}</h3>
+                <span className="card-price">{item.price}</span>
+              </div>
+              <p className="card-desc">{item.desc}</p>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+    </section>
+  );
+};
+
+const StyleFeedPhone = () => {
+  // Variabel animasi untuk container (agar anak-anaknya muncul bergantian)
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1, // Jeda antar elemen muncul
+      },
+    },
+  };
+
+  // Variabel animasi untuk elemen anak (muncul dari bawah ke atas)
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100 },
+    },
+  };
+
+  return (
+    <motion.div 
+      className="phone"
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="screen">
+        {/* Header Animation */}
+        <motion.div 
+          className="topline"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <span>TAZEERA</span>
+          <span>Style Feed</span>
+        </motion.div>
+
+        {/* Searchbar Animation */}
+        <motion.div 
+          className="searchbar"
+          initial={{ width: "80%", opacity: 0 }}
+          animate={{ width: "100%", opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          Search style, categories, creators...
+        </motion.div>
+
+        {/* Grid Animation dengan Stagger */}
+        <motion.div 
+          className="mini-grid"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {["Fashion", "Gadgets", "Home", "Automotive"].map((cat) => (
+            <motion.div 
+              key={cat} 
+              className="mini-card"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }} // Efek saat disentuh/hover
+              whileTap={{ scale: 0.95 }}
+            >
+              <strong>{cat}</strong>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Chart Card & Bars Animation */}
+        <motion.div 
+          className="chart-card"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <strong>The Future of Marketplace</strong>
+          <div className="bars">
+            {[...Array(15)].map((_, i) => (
+              <motion.span
+                key={i}
+                initial={{ height: 0 }}
+                animate={{ height: "100%" }} // Pastikan CSS .bars span punya height dasar
+                transition={{ 
+                  delay: 0.8 + (i * 0.05), 
+                  duration: 0.5,
+                  repeat: Infinity, 
+                  repeatType: "reverse" // Biar barnya naik turun lucu
+                }}
+              ></motion.span>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
 
 function Home() {
   
@@ -140,28 +371,7 @@ function Home() {
           </div>
         </div>
   {/* Gunakan className, bukan class */}
-  <div className="phone">
-    <div className="screen">
-      <div className="topline">
-        <span>TAZEERA</span>
-        <span>Style Feed</span>
-      </div>
-      <div className="searchbar">Search style, categories, creators...</div>
-      <div className="mini-grid">
-        <div className="mini-card"><strong>Fashion</strong></div>
-        <div className="mini-card"><strong>Gadgets</strong></div>
-        <div className="mini-card"><strong>Home</strong></div>
-        <div className="mini-card"><strong>Automotive</strong></div>
-      </div>
-      <div className="chart-card">
-        <strong>The Future of Marketplace</strong>
-        <div className="bars">
-          <span></span><span></span><span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span><span></span><span></span>
-        </div>
-      </div>
-    </div>
-  </div>
+        <StyleFeedPhone />
       </section>
 
       {/* MISSION STORYTELLING */}
@@ -169,7 +379,7 @@ function Home() {
         <div className="container story-grid">
           <div className="section-head">
             <div className="eyebrow">Mission Storytelling</div>
-            <h2>We believe <span className="gold-text">style exists in everything</span>.</h2>
+            <h2>We believe <span className="story-subText">style exists in everything</span>.</h2>
             <p>TAZEERA is not just another product marketplace. It is a style-first ecosystem built around identity, taste, and discovery.</p>
           </div>
 
@@ -195,7 +405,7 @@ function Home() {
       </section>
 
 <section>
-  <div className="container">
+  <div className="container benefitsAndFeatures-section">
     <div class="section-head">
           <div class="eyebrow">Founding Member Benefits</div>
           <h2>Join early. Get more than access.</h2>
@@ -203,6 +413,18 @@ function Home() {
         </div>
     <FoundingBenefits />
     <BenefitSection />
+        <div className="featuresSection-head">
+          <div class="eyebrow">Features</div>
+          <h2>Join early. Get more than access.</h2>
+          <p>The first wave of users shapes community quality, product direction, and the culture of the marketplace.</p>
+        </div>
+    <FeaturesSection />
+        <div className="featuresSection-head">
+          <div class="eyebrow">Features</div>
+          <h2>Join early. Get more than access.</h2>
+          <p>The first wave of users shapes community quality, product direction, and the culture of the marketplace.</p>
+        </div>
+    <ProductSection />
   </div>
 </section>
 

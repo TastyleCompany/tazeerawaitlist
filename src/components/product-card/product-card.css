@@ -1,45 +1,120 @@
-/* Product Grid */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
+/* Container Utama Card */
+.product-card {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  background: #1a1a1a; /* Sedikit lebih terang dari bg utama */
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 60px;
-        }
+.product-card:hover {
+  border-color: rgba(251, 191, 36, 0.3); /* Warna gold transparan */
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
 
-        .product-card {
-            text-align: center;
-            cursor: pointer;
-        }
+/* Container Gambar */
+.image-container {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
 
-        .product-img {
-            background-color: #f7f7f7;
-            aspect-ratio: 3/4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            overflow: hidden;
-        }
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
 
-        .product-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.product-card:hover .product-image {
+  transform: scale(1.1);
+}
 
-        .product-info h4 {
-            font-size: 12px;
-            margin-bottom: 5px;
-            text-transform: capitalize;
-        }
+/* Overlay Gradasi saat Hover */
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #0a0a0a, transparent, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
-        .product-info p {
-            font-size: 11px;
-            color: #666;
-        }
+.product-card:hover .image-overlay {
+  opacity: 0.7;
+}
+
+/* Detail Produk */
+.product-details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-category {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(253, 186, 116, 0.6); /* Gold muda */
+  font-weight: 500;
+}
+
+.product-main-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.product-name {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: white;
+  letter-spacing: 0.025em;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.product-card:hover .product-name {
+  color: #fde68a;
+}
+
+.product-price {
+  color: #fde68a;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Tombol Discover */
+.discover-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.product-card:hover .discover-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.discover-btn:hover {
+  background: #fde68a;
+}
