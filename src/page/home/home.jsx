@@ -1,5 +1,6 @@
-import "./home.css"
-import { motion } from "framer-motion"
+import { useState } from "react"; // Tambahkan ini
+import "./home.css";
+import { motion } from "framer-motion";
 
 const BenefitSection = () => {
   const containerVariants = {
@@ -352,7 +353,33 @@ const StyleFeedPhone = () => {
 };
 
 function Home() {
-  
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Mencegah halaman reload
+    
+    try {
+      const response = await fetch('http://localhost:5000/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email }),
+      });
+
+      const result = await response.json();
+      
+      if (response.ok) {
+        setMessage(result.message);
+        setEmail(''); // Kosongkan input setelah berhasil
+      } else {
+        setMessage(result.message || "Terjadi kesalahan");
+      }
+    } catch (error) {
+      setMessage("Gagal terhubung ke server.");
+    }
+  };
+
+  // ... bagian return kamu di bawah
   return (
     <>
       {/* HERO SECTION */}
@@ -464,10 +491,23 @@ function Home() {
             <p>Share your unique referral link and unlock faster access to TAZEERA! The more friends you invite, the higher your priority in the waitlist.</p>
             <a href="https://example.com/referral-link" className="btn btn-secondary">Copy Referral Link</a>
           </div>
-          <form className="email-form" id="waitlistForm">
-            <input type="email" id="email" placeholder="Enter your email" required />
+
+{/* FORM WAITLIST */}
+          <form className="email-form" id="waitlistForm" onSubmit={handleSubmit}>
+            <input 
+              type="email" 
+              id="email" 
+              placeholder="Enter your email" 
+              required 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)} // Update state saat mengetik
+            />
             <button type="submit" className="btn">Get Early Access</button>
           </form>
+
+          {/* Tampilkan pesan sukses atau error di bawahnya */}
+          {message && <div className="message-notif">{message}</div>}
+
           <div className="form-meta">
             <span>Early platform access</span>
             <span>Exclusive perks</span>
